@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>Joe Hunter Official Page</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta name="description" content="" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="Joe Hunter Official Page" />
+<meta property="og:type" content="website" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<style>
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow-x: hidden; 
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+	float: left;
+	height: 100vh;
+}
+
+.left {
+	width: 20%;
+	color: #FFFFFF;
+	font-family: sans-serif;
+	font-size: 200%;
+}
+
+.center {
+	width: 10%;
+	text-align: center;
+}
+
+/* Set Button Properties */
+.center button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  font-weight: bold;
+  padding: 50px 15px 50px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.center button:hover {
+  background-color: #999;
+}
+
+.center button.active {
+  background-color: #999;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+}
+
+.right {
+	width: 70%;
+	align: center;
+	font-family: sans-serif;
+	font-size: 200%;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+a:link, a:visited {
+	color: white;
+}
+
+a:hover {
+	color: green;
+}
+
+a:active {
+	color: red;
+}
+</style>
+</head>
+<body>
+<!--<div class="row">-->
+  <div class="column left" style="background-color:#000000;">
+	<img src="image/profile_pic.png">
+    <p style="font-size:150%;"><a href="index.html" target="_self"><b>Joe Hunter</b></a></p>
+	<hr>
+	<p><a href="about.html" target="_self">About Me</a></p>
+	<p><a href="cv.html" target="_self">Curriculum Vitæ</a></p>
+    <p><a href="https://www.linkedin.com/in/jrhunter3/" target="_blank">LinkedIn</a></p>
+	<p><a href="https://github.com/jrhunter3" target="_blank">Github</a></p>
+	<p><a href="https://www.datacamp.com/profile/thejoebot" target="_blank">DataCamp</a></p>
+	<p>Blog</p>
+  </div>
+  <div class="column center" style="background-color:#bbb;">
+	<button class="tablinks" onmouseover="openEvent(event, 'Born')">March 18, 1986</button>
+	<button class="tablinks" onmouseover="openEvent(event, 'Military')">July 25, 2004</button>
+	<button class="tablinks" onmouseover="openEvent(event, 'College')">August 18, 2013</button>
+	<button class="tablinks" onmouseover="openEvent(event, 'FOTL')">August 8, 2016</button>
+	<button class="tablinks" onmouseover="openEvent(event, 'Graduation')">December 5, 2017</button>
+	<button class="tablinks" onmouseover="openEvent(event, 'Unemployed')">July 3, 2020</button>
+  </div>
+
+  <script>
+  function openEvent(evt, eventName) {
+  // Declare all variables
+	var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+
+  // Get all elements with class="tablinks" and remove the class "active"
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+
+	// Show the current tab, and add an "active" class to the link that opened the tab
+	document.getElementById(eventName).style.display = "block";
+	evt.currentTarget.className += " active";
+	}
+  </script>
+  <div class="column right" style="background-color:#bbb;">
+		<div id="Born" class="tabcontent" style="background-color:#bbb;">
+			<h3>Birth</h3>
+			<p>I was born.</p>
+		</div>
+
+		<div id="Military" class="tabcontent" style="background-color:#bbb;">
+			<h3>U.S. Marine Corps</h3>
+			<p>I enlisted in the US Marine Corps.</p>
+		</div>
+
+		<div id="College" class="tabcontent" style="background-color:#bbb;">
+			<h3>Western Kentucky University</h3>
+			<p>I began classes at WKU.</p>
+		</div>
+		<div id="FOTL" class="tabcontent" style="background-color:#bbb;">
+			<h3>Fruit of the Loom, Inc.</h3>
+			<p>I began working at FotL.</p>
+		</div>
+		<div id="Graduation" class="tabcontent" style="background-color:#bbb;">
+			<h3>Graduation</h3>
+			<p>I graduated from WKU with a Bachelors of Science in Electrical Engineeering Magna Cum Laude.</p>
+		</div>
+		<div id="Unemployed" class="tabcontent" style="background-color:#bbb;">
+			<h3>Maybe You?</h3>
+			<p>Looking for the next chapter in my career!</p>
+		</div>
+  </div>
+<!--</div>-->
+</body>
+</html>
