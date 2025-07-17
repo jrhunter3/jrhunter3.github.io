@@ -1,80 +1,298 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html lang="en">
 <head>
-<title>Joe Hunter Official Page</title>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-<meta name="description" content="" />
-<meta property="og:description" content="" />
-<meta property="og:title" content="Joe Hunter Official Page" />
-<meta property="og:type" content="website" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<style>
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0%;
-    padding: 0%;
-    overflow-x: hidden; 
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joe Hunter - CV</title>
+  <style>
+    :root {
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+      --header-bg: #333;
+      --header-text: #fff;
+    }
 
-/* Create two unequal columns that floats next to each other */
-.column {
-  float: left;
-  height: 100vh;
-}
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eaeaea;
+      --header-bg: #1e1e1e;
+      --header-text: #ffffff;
+    }
 
-.left {
-  width: 20%;
-  color: #FFFFFF;
-  font-family: sans-serif;
-  font-size: 200%;
-}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
 
-.right {
-  width: 80%;
-  align: center;
-}
+    header {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
 
-img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 60%;
-}
+    header button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      color: #333;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
 
-a:link, a:visited {
-  color: white;
-}
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background: var(--bg-color);
+    }
 
-a:hover {
-  color: green;
-}
+    section {
+      margin-bottom: 30px;
+    }
 
-a:active {
-  color: red;
-}
-</style>
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .job-title {
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      padding-right: 20px;
+      transition: color 0.3s;
+    }
+
+    .job-title::after {
+      content: "▼";
+      position: absolute;
+      right: 0;
+      transition: transform 0.3s;
+    }
+
+    .job-title.active::after {
+      transform: rotate(180deg);
+    }
+
+    .job-description {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      margin-left: 15px;
+    }
+
+    .job-description.open {
+      max-height: 500px; /* Large enough to show full content */
+      opacity: 1;
+      margin-top: 10px;
+    }
+
+    .date {
+      float: right;
+      color: #777;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      border: none;
+      background-color: #333;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body style="width:100%;">
-	<div class="column left" style="background-color:#000000;">
-		<img src="image/profile_pic.png">
-		<p style="font-size:150%;"><a href="index.html" target="_self"><b>Joe Hunter</b></a></p>
-		<hr>
-		<p><a href="about.html" target="_self">About Me</a></p>
-		<p><a href="cv.html" target="_self">Curriculum Vitæ</a></p>
-		<p><a href="https://www.linkedin.com/in/jrhunter3/" target="_blank">LinkedIn</a></p>
-		<p><a href="https://github.com/jrhunter3" target="_blank">Github</a></p>
-		<p><a href="https://www.datacamp.com/profile/thejoebot" target="_blank">DataCamp</a></p>
-		<p>Blog</p>
-	</div>
-	<div class="column right" style="background-color:#bbb;">
-		<div>
-		<h2>Hi, I'm Joe Hunter</h2>
-		<p>An advanced data analyst and automation specialist.</p>
-		<p>This site is still under construction, but feel free to look around while I'm building.</p>
-		</div>
-	</div>
+<body>
+
+  <header>
+    <h1>Joe Hunter</h1>
+    <p>Business Intelligence Engineer | IT Consultant</p>
+    <button onclick="downloadPDF()">Download as PDF</button>
+  </header>
+
+  <div class="container">
+    
+    <section class="contact-info">
+      <h2>Contact</h2>
+      <p>Email: employment.maker035@passinbox.com</p>
+      <p>Location: Hopkinsville, KY</p>
+      <p>Website: jrhunter3.github.io</p>
+    </section>
+
+    <section>
+      <h2>Professional Summary</h2>
+      <p><b>Senior Business Intelligence Engineer and Automation Specialist</b> A master software developer and proven process optimizer. Highly proficient in mathematics. Experienced in data ETL, advanced visualization, and persuasive presentation. Adept in agile project management and working in a team environment.</p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        <li>Python, R</li>
+        <li>MySQL, PostgreSQL, MongoDB</li>
+        <li>HTML5, CSS3, JavaScript</li>
+        <li>C/C++</li>
+        <li>REST APIs, JSON, XML</li>
+        <li>Version Control (Git/Bitbucket)</li>
+        <li>CLI (Unix/CMD)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div>
+        <p class="job-title" onclick="toggleDescription(this)">IT Consultant<span class="date">2021 - Present</span></p>
+        <div class="job-description">
+          <p>Object Systems Group, Inc., Remote</p>
+          <ul>
+            <li>Provided database and API extraction, transformation, and reporting services to company clients.</li>
+            <li>Designed automated processes through iterative code development utilizing knowledge of multiple programming languages, operating systems, and applications.</li>
+            <li>Frequently interacted with clients and C-suite executives to understand the needs of the business and to gauge progress in meeting objectives.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <p class="job-title" onclick="toggleDescription(this)">Business Intelligence Analyst<span class="date">2020 - 2021</span></p>
+        <div class="job-description">
+          <p>Good Sam Enterprises, Bowling Green, KY</p>
+          <ul>
+            <li>Made improvements and automations to existing processes through Excel functions, javascript, and SQL coding in existing tools and systems.</li>
+            <li>Spearheaded the conversion from an outdated marketing tool, Engage, to a more modern tool, Unica, by providing support and training through the process of translating the Engage Query Language into SQL.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <p class="job-title" onclick="toggleDescription(this)">Business Data Analyst<span class="date">2016 - 2020</span></p>
+        <div class="job-description">
+          <p>Fruit of the Loom, Inc., Bowling Green, KY</p>
+          <ul>
+            <li>Automated the collection, aggregation, and analysis of both unstructured and structured data sources from the web, relational database systems, and various filetypes.</li>
+            <li>Worked extensively with R, SQL, and a suite of Microsoft advanced data products.</li>
+            <li>Presented results for both internal teams and company executives to help drive corporate strategy.</li>
+            <li>Designed, coded, and implemented several automated data pipelines which saved the company hundreds of hours of manual labor costs.</li>
+            <li>Major contributor to creating internal software packages to expedite processes and onboarding.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <p class="job-title" onclick="toggleDescription(this)">Academics Tutor<span class="date">2014 - 2016</span></p>
+        <div class="job-description">
+          <p>Western Kentucky University, Bowling Green, KY</p>
+          <ul>
+            <li>Curated one-on-one instruction for non-traditional students based on student strengths.</li>
+            <li>Primarily tutored Algebra and Geometry.</li>
+            <li>Additionally tutored Calculus, Physics, and Computer Technology.</li>
+            <li>Assisted in Physics laboratory instruction as a practical application guide.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <p class="job-title" onclick="toggleDescription(this)">8156 Marine Security Guard<span class="date">2009 - 2013</span></p>
+        <div class="job-description">
+          <p>US Marine Corps</p>
+          <ul>
+            <li>Responsible for the protection and security of classified material, personnel, and property at United States embassy and consular facilities.</li>
+            <li>Maintained logistics, training, and financial records for the living and working expenses of 5 – 16 Marines.</li>
+            <li>Special assignments included providing interior security for visits by the United States President and Secretary of State.</li>
+            <li>Assigned locations included Germany, Sudan, El Salvador, Czech Republic, Nicaragua, and Brazil.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <p class="job-title" onclick="toggleDescription(this)">2800 Basic Ground Electronics Maintenance<span class="date">2004 - 2009</span></p>
+        <div class="job-description">
+          <p>US Marine Corps</p>
+          <ul>
+            <li>Diagnosed and repaired, at the component level, military communications and encryption equipment operating in the VHF and UHF ranges, as well as SATCOM.</li>
+            <li>Maintained quality control and calibration standards on all work orders and test equipment.</li>
+            <li>Acted as supervisor and oversaw maintenance and requisition operations while deployed.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <p class="job-title">B.Sc. in Electrical Engineering<span class="date">2013 - 2017</span></p>
+      <p>Western Kentucky University</p>
+    </section>
+
+  </div>
+
+  <button id="scrollTopBtn" onclick="scrollToTop()">Top ↑</button>
+
+  <script>
+    function toggleDescription(element) {
+      const desc = element.nextElementSibling;
+      element.classList.toggle('active');
+      desc.classList.toggle('open');
+    }
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+      scrollTopBtn.style.display = (document.documentElement.scrollTop > 100) ? "block" : "none";
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function downloadPDF() {
+	  // Expand all job descriptions
+	  const jobTitles = document.querySelectorAll('.job-title');
+	  const jobDescriptions = document.querySelectorAll('.job-description');
+
+	  jobTitles.forEach(title => title.classList.add('active'));
+	  jobDescriptions.forEach(desc => {
+		desc.classList.add('open');
+		desc.style.display = 'block'; // ensure visible even if CSS had display:none
+	  });
+
+	  // Wait a moment for DOM to update, then trigger print
+	  setTimeout(() => {
+		window.print();
+
+		// Optional: revert to original collapsed state after printing
+		setTimeout(() => {
+		  jobTitles.forEach(title => title.classList.remove('active'));
+		  jobDescriptions.forEach(desc => {
+		    desc.classList.remove('open');
+		    desc.style.display = 'none';
+		  });
+		}, 1000);
+	  }, 300); // allow layout to fully update
+	}
+
+
+  </script>
+
 </body>
 </html>
+
