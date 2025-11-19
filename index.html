@@ -3,88 +3,330 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Joe Hunter - CV</title>
+  <title>Joe Hunter - Business Intelligence Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-color: #f4f4f4;
-      --text-color: #333;
-      --header-bg: #333;
-      --header-text: #fff;
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --header-text: #ffffff;
+      --accent: #667eea;
+      --section-bg: #f8f9fa;
+      --border-color: #e0e0e0;
+      --shadow: rgba(0, 0, 0, 0.1);
     }
 
     body.dark {
-      --bg-color: #121212;
-      --text-color: #eaeaea;
-      --header-bg: #1e1e1e;
+      --bg-color: #1a1a1a;
+      --text-color: #e4e4e4;
+      --header-bg: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
       --header-text: #ffffff;
+      --accent: #818cf8;
+      --section-bg: #2d2d2d;
+      --border-color: #404040;
+      --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.3s ease, color 0.3s ease;
+      line-height: 1.6;
     }
 
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg-color);
+      box-shadow: 0 2px 10px var(--shadow);
+      z-index: 100;
+      padding: 1rem 0;
+      transition: background 0.3s ease;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Header */
     header {
-      background-color: var(--header-bg);
+      background: var(--header-bg);
       color: var(--header-text);
-      padding: 40px 20px;
+      padding: 60px 20px;
       text-align: center;
       position: relative;
     }
 
-    header button {
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    header .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      animation: fadeIn 1s ease;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      padding: 10px 25px;
+      cursor: pointer;
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: white;
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+
+    #darkModeToggle {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: #fff;
-      color: #333;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
       border: none;
-      padding: 8px 12px;
+      padding: 10px 15px;
       cursor: pointer;
-      border-radius: 4px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
     }
 
+    #darkModeToggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(180deg);
+    }
+
+    /* Container */
     .container {
       max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      background: var(--bg-color);
+      margin: 3rem auto;
+      padding: 0 20px;
     }
 
+    /* Contact Info */
+    .contact-section {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: var(--section-bg);
+      border-radius: 15px;
+      box-shadow: 0 4px 6px var(--shadow);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .contact-item i {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--section-bg);
+      border-radius: 50%;
+      color: var(--accent);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 2px 5px var(--shadow);
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+
+    /* Sections */
     section {
-      margin-bottom: 30px;
+      margin-bottom: 3rem;
+      animation: fadeIn 1s ease;
     }
 
     h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
     }
 
-    ul {
-      padding-left: 20px;
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-item {
+      background: var(--section-bg);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .skill-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+
+    .skill-item i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Experience */
+    .job-card {
+      background: var(--section-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px var(--shadow);
+    }
+
+    .job-card:hover {
+      box-shadow: 0 5px 15px var(--shadow);
+      transform: translateX(5px);
+    }
+
+    .job-header {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .job-title {
       font-weight: bold;
-      cursor: pointer;
-      position: relative;
-      padding-right: 20px;
-      transition: color 0.3s;
+      font-size: 1.2rem;
+      color: var(--accent);
+      flex: 1;
     }
 
-    .job-title::after {
-      content: "▼";
-      position: absolute;
-      right: 0;
-      transition: transform 0.3s;
+    .job-date {
+      color: #777;
+      font-size: 0.9rem;
+      white-space: nowrap;
     }
 
-    .job-title.active::after {
+    .company {
+      color: var(--text-color);
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .expand-icon {
+      transition: transform 0.3s ease;
+      color: var(--accent);
+      margin-left: 0.5rem;
+    }
+
+    .expand-icon.active {
       transform: rotate(180deg);
     }
 
@@ -92,21 +334,35 @@
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.5s ease, opacity 0.5s ease;
-      margin-left: 15px;
+      transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.3s ease;
     }
 
     .job-description.open {
-      max-height: 500px; /* Large enough to show full content */
+      max-height: 1000px;
       opacity: 1;
-      margin-top: 10px;
+      margin-top: 1rem;
     }
 
-    .date {
-      float: right;
-      color: #777;
+    .job-description ul {
+      list-style: none;
+      padding-left: 0;
     }
 
+    .job-description li {
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .job-description li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Scroll to top */
     #scrollTopBtn {
       display: none;
       position: fixed;
@@ -114,70 +370,224 @@
       right: 30px;
       z-index: 99;
       border: none;
-      background-color: #333;
+      background: var(--accent);
       color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
       cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 10px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    #scrollTopBtn:hover {
+      background: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px var(--shadow);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header .subtitle {
+        font-size: 1rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .job-header {
+        flex-direction: column;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .contact-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      nav, #scrollTopBtn, #darkModeToggle, .header-buttons, .social-links {
+        display: none !important;
+      }
+
+      .job-description {
+        max-height: none !important;
+        opacity: 1 !important;
+        display: block !important;
+      }
+
+      .expand-icon {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
+
+      .job-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
+    <button id="darkModeToggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+      <i class="fas fa-moon"></i>
+    </button>
     <h1>Joe Hunter</h1>
-    <p>Business Intelligence Engineer | IT Consultant</p>
-    <button onclick="downloadPDF()">Download as PDF</button>
+    <p class="subtitle">Business Intelligence Engineer | IT Consultant</p>
+    <div class="header-buttons">
+      <button class="btn" onclick="downloadPDF()">
+        <i class="fas fa-download"></i> Download PDF
+      </button>
+      <a class="btn" href="#contact">
+        <i class="fas fa-envelope"></i> Contact Me
+      </a>
+    </div>
   </header>
+
+  <nav>
+    <ul>
+      <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+      <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+      <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+      <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
 
   <div class="container">
     
-    <section class="contact-info">
-      <h2>Contact</h2>
-      <p>Email: employment.maker035@passinbox.com</p>
-      <p>Location: Hopkinsville, KY</p>
-      <p>Website: jrhunter3.github.io</p>
+    <section id="contact">
+      <div class="contact-section">
+        <a href="mailto:employment.maker035@passinbox.com" class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>employment.maker035@passinbox.com</span>
+        </a>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Hopkinsville, KY</span>
+        </div>
+        <a href="https://jrhunter3.github.io" class="contact-item">
+          <i class="fas fa-globe"></i>
+          <span>jrhunter3.github.io</span>
+        </a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/jrhunter3" class="social-link" aria-label="GitHub" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/jrhunter3" class="social-link" aria-label="LinkedIn" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:employment.maker035@passinbox.com" class="social-link" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
     </section>
 
-    <section>
+    <section id="about">
       <h2>Professional Summary</h2>
-      <p>I've developed over a decade of experience in transforming
-				corporate assets into drivers of business intelligence that delivers
-				market, manufacturing, and industry data into actionable insights.</p>
-			<p>Through the Marine Corps, I honed a sense of pride and
-				accomplishment in delivering the absolute best results which
-				I've carried into my post-military career. Starting with a data
-				science team at Fruit of the Loom, I gained the knowledge of
-				what metrics matter and what analysts and executives need to
-				make big decisions. Leaning into my lifelong passion for software
-				development and my technical degree in electrical engineering and
-				mathematics, I've taken on the responsibility of doing the complex
-				back-end work required to bring business intelligence to the front
-				lines.</p>
-			<p>Whether as a self-directed product engineer or integrated into a
-				project team, I'm a force multiplier in bringing vision to life.</p>
+      <p>I've developed over a decade of experience in transforming corporate assets into drivers of business intelligence that delivers market, manufacturing, and industry data into actionable insights.</p>
+      <p>Through the Marine Corps, I honed a sense of pride and accomplishment in delivering the absolute best results which I've carried into my post-military career. Starting with a data science team at Fruit of the Loom, I gained the knowledge of what metrics matter and what analysts and executives need to make big decisions. Leaning into my lifelong passion for software development and my technical degree in electrical engineering and mathematics, I've taken on the responsibility of doing the complex back-end work required to bring business intelligence to the front lines.</p>
+      <p>Whether as a self-directed product engineer or integrated into a project team, I'm a force multiplier in bringing vision to life.</p>
     </section>
 
-    <section>
+    <section id="skills">
       <h2>Skills</h2>
-      <ul>
-        <li>Python, R</li>
-        <li>MySQL, PostgreSQL, MongoDB</li>
-        <li>HTML5, CSS3, JavaScript</li>
-        <li>C/C++</li>
-        <li>REST APIs, JSON, XML</li>
-        <li>Version Control (Git/Bitbucket)</li>
-        <li>CLI (Unix/CMD)</li>
-      </ul>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <i class="fab fa-python"></i>
+          <p>Python, R</p>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-database"></i>
+          <p>MySQL, PostgreSQL, MongoDB</p>
+        </div>
+        <div class="skill-item">
+          <i class="fab fa-html5"></i>
+          <p>HTML5, CSS3, JavaScript</p>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-code"></i>
+          <p>C/C++</p>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-exchange-alt"></i>
+          <p>REST APIs, JSON, XML</p>
+        </div>
+        <div class="skill-item">
+          <i class="fab fa-git-alt"></i>
+          <p>Git/Bitbucket</p>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-terminal"></i>
+          <p>CLI (Unix/CMD)</p>
+        </div>
+      </div>
     </section>
 
-    <section>
+    <section id="experience">
       <h2>Experience</h2>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">IT Consultant<span class="date">2021 - Present</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              IT Consultant
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">Object Systems Group, Inc., Remote</div>
+          </div>
+          <div class="job-date">2021 - Present</div>
+        </div>
         <div class="job-description">
-          <p>Object Systems Group, Inc., Remote</p>
           <ul>
             <li>Designed automated processes through iterative code development utilizing knowledge of multiple programming languages, operating systems, and applications.</li>
             <li>Frequently interacted with clients and C-suite executives to understand the needs of the business and to gauge progress in meeting objectives.</li>
@@ -185,10 +595,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">Business Intelligence Engineer<span class="date">2022 - Present</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Business Intelligence Engineer
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">Financial Industry Regulatory Authority, Inc., Remote</div>
+          </div>
+          <div class="job-date">2022 - Present</div>
+        </div>
         <div class="job-description">
-          <p>Financial Industry Regulatory Authority, Inc., Remote</p>
           <ul>
             <li>Lead efforts to research and operationalize AWS QuickSight for business-wide reporting.</li>
             <li>Worked with multiple departments and stakeholders to lead the migration of many industry and business critical BI reports from IBM Cognos Analytics to Microsoft Power BI applications.</li>
@@ -199,10 +617,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">Business Intelligence Engineer<span class="date">2021 - 2022</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Business Intelligence Engineer
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">OSGHD, LLC, Remote</div>
+          </div>
+          <div class="job-date">2021 - 2022</div>
+        </div>
         <div class="job-description">
-          <p>OSGHD, LLC, Remote</p>
           <ul>
             <li>Provided database and API extraction, transformation, and reporting services.</li>
             <li>Designed and automated processes through iterative code development within a team environment.</li>
@@ -213,10 +639,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">Business Intelligence Analyst<span class="date">2020 - 2021</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Business Intelligence Analyst
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">Good Sam Enterprises, Bowling Green, KY</div>
+          </div>
+          <div class="job-date">2020 - 2021</div>
+        </div>
         <div class="job-description">
-          <p>Good Sam Enterprises, Bowling Green, KY</p>
           <ul>
             <li>Made improvements and automations to existing processes through Excel functions, javascript, and SQL coding in existing tools and systems.</li>
             <li>Spearheaded the conversion from an outdated marketing tool, Engage, to a more modern tool, Unica, by providing support and training through the process of translating the Engage Query Language into SQL.</li>
@@ -224,10 +658,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">Business Data Analyst<span class="date">2016 - 2020</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Business Data Analyst
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">Fruit of the Loom, Inc., Bowling Green, KY</div>
+          </div>
+          <div class="job-date">2016 - 2020</div>
+        </div>
         <div class="job-description">
-          <p>Fruit of the Loom, Inc., Bowling Green, KY</p>
           <ul>
             <li>Automated the collection, aggregation, and analysis of both unstructured and structured data sources from the web, relational database systems, and various filetypes.</li>
             <li>Worked extensively with R, SQL, and a suite of Microsoft advanced data products.</li>
@@ -238,10 +680,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">Academics Tutor<span class="date">2014 - 2016</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Academics Tutor
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">Veterans Upward Bound, Bowling Green, KY</div>
+          </div>
+          <div class="job-date">2014 - 2016</div>
+        </div>
         <div class="job-description">
-          <p>Veterans Upward Bound, Bowling Green, KY</p>
           <ul>
             <li>Curated one-on-one instruction for non-traditional students based on student strengths.</li>
             <li>Primarily tutored Algebra and Geometry.</li>
@@ -251,10 +701,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">Physics Lab Assistant<span class="date">2015 - 2016</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Physics Lab Assistant
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">Western Kentucky University, Bowling Green, KY</div>
+          </div>
+          <div class="job-date">2015 - 2016</div>
+        </div>
         <div class="job-description">
-          <p>Western Kentucky University, Bowling Green, KY</p>
           <ul>
             <li>Prepared laboratory equipment for student use.</li>
             <li>Assisted in Physics laboratory instruction as a practical application guide.</li>
@@ -263,10 +721,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">8156 Marine Security Guard<span class="date">2009 - 2013</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Marine Security Guard
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">US Marine Corps</div>
+          </div>
+          <div class="job-date">2009 - 2013</div>
+        </div>
         <div class="job-description">
-          <p>US Marine Corps</p>
           <ul>
             <li>Responsible for the protection and security of classified material, personnel, and property at United States embassy and consular facilities.</li>
             <li>Maintained logistics, training, and financial records for the living and working expenses of 5 – 16 Marines.</li>
@@ -276,10 +742,18 @@
         </div>
       </div>
 
-      <div>
-        <p class="job-title" onclick="toggleDescription(this)">2800 Basic Ground Electronics Maintenance<span class="date">2004 - 2009</span></p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              Ground Electronics Maintenance Technician
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">US Marine Corps</div>
+          </div>
+          <div class="job-date">2004 - 2009</div>
+        </div>
         <div class="job-description">
-          <p>US Marine Corps</p>
           <ul>
             <li>Supervised the maintenance and repair of communications, data, and optical equipment during combat operations in Afghanistan.</li>
             <li>Designed and installed the communication network for a prototype military vehicle.</li>
@@ -295,67 +769,117 @@
 
     </section>
 
-    <section>
+    <section id="education">
       <h2>Education</h2>
-      <p class="job-title" onclick="toggleDescription(this)">B.Sc. in Electrical Engineering<span class="date">2013 - 2017</span></p>
-      <div class="job-description">
-      	<p>Western Kentucky University</p>
-      	<p>Minor: Mathematics</p>
-      	<p>Honors: Magna Cum Laude</p>
-      	<p>Societies: Tau Beta Pi</p>
+      <div class="job-card">
+        <div class="job-header" onclick="toggleDescription(this)">
+          <div>
+            <div class="job-title">
+              B.Sc. in Electrical Engineering
+              <i class="fas fa-chevron-down expand-icon"></i>
+            </div>
+            <div class="company">Western Kentucky University</div>
+          </div>
+          <div class="job-date">2013 - 2017</div>
+        </div>
+        <div class="job-description">
+          <p><strong>Minor:</strong> Mathematics</p>
+          <p><strong>Honors:</strong> Magna Cum Laude</p>
+          <p><strong>Societies:</strong> Tau Beta Pi</p>
+        </div>
       </div>
     </section>
 
   </div>
 
-  <button id="scrollTopBtn" onclick="scrollToTop()">Top ↑</button>
+  <button id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script>
+    // Toggle job descriptions
     function toggleDescription(element) {
-      const desc = element.nextElementSibling;
-      element.classList.toggle('active');
+      const card = element.closest('.job-card');
+      const desc = card.querySelector('.job-description');
+      const icon = card.querySelector('.expand-icon');
+      
+      icon.classList.toggle('active');
       desc.classList.toggle('open');
+    }
+
+    // Dark mode toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const icon = document.querySelector('#darkModeToggle i');
+      
+      if (document.body.classList.contains('dark')) {
+        icon.className = 'fas fa-sun';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        icon.className = 'fas fa-moon';
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    }
+
+    // Load dark mode preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark');
+      document.querySelector('#darkModeToggle i').className = 'fas fa-sun';
     }
 
     // Scroll to top button
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     window.onscroll = function() {
-      scrollTopBtn.style.display = (document.documentElement.scrollTop > 100) ? "block" : "none";
+      scrollTopBtn.style.display = (document.documentElement.scrollTop > 300) ? "block" : "none";
     };
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
+    // PDF download
     function downloadPDF() {
-	  // Expand all job descriptions
-	  const jobTitles = document.querySelectorAll('.job-title');
-	  const jobDescriptions = document.querySelectorAll('.job-description');
+      const jobDescriptions = document.querySelectorAll('.job-description');
+      const expandIcons = document.querySelectorAll('.expand-icon');
 
-	  jobTitles.forEach(title => title.classList.add('active'));
-	  jobDescriptions.forEach(desc => {
-		desc.classList.add('open');
-		desc.style.display = 'block'; // ensure visible even if CSS had display:none
-	  });
+      // Expand all sections
+      jobDescriptions.forEach(desc => desc.classList.add('open'));
+      expandIcons.forEach(icon => icon.classList.add('active'));
 
-	  // Wait a moment for DOM to update, then trigger print
-	  setTimeout(() => {
-		window.print();
+      setTimeout(() => {
+        window.print();
+        
+        // Collapse after printing
+        setTimeout(() => {
+          jobDescriptions.forEach(desc => desc.classList.remove('open'));
+          expandIcons.forEach(icon => icon.classList.remove('active'));
+        }, 1000);
+      }, 300);
+    }
 
-		// Optional: revert to original collapsed state after printing
-		setTimeout(() => {
-		  jobTitles.forEach(title => title.classList.remove('active'));
-		  jobDescriptions.forEach(desc => {
-		    desc.classList.remove('open');
-		    desc.style.display = 'none';
-		  });
-		}, 1000);
-	  }, 300); // allow layout to fully update
-	}
+    // Highlight active nav section on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
 
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
 
+      navLinks.forEach(link => {
+        link.style.color = 'var(--text-color)';
+        if (link.getAttribute('href') === `#${current}`) {
+          link.style.color = 'var(--accent)';
+        }
+      });
+    });
   </script>
 
 </body>
 </html>
-
