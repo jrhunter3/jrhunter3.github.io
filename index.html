@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Joe Hunter - Business Intelligence Engineer</title>
   
+  <!-- Meta Tags for Social Sharing -->
+  <meta name="description" content="Business Intelligence Engineer with 10+ years of experience in data analytics, automation, and enterprise BI solutions. Skilled in Python, SQL, AWS, Power BI, and more.">
+  <meta name="author" content="Joe Hunter">
+  <meta name="keywords" content="Business Intelligence, Data Engineering, Python, SQL, PostgreSQL, AWS, Power BI, Data Analytics, Marine Corps Veteran">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jrhunter3.github.io/">
+  <meta property="og:title" content="Joe Hunter - Business Intelligence Engineer">
+  <meta property="og:description" content="Business Intelligence Engineer with 10+ years of experience transforming corporate assets into actionable insights. Marine Corps veteran with expertise in data analytics and automation.">
+  <meta property="og:image" content="https://jrhunter3.github.io/og-image.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://jrhunter3.github.io/">
+  <meta property="twitter:title" content="Joe Hunter - Business Intelligence Engineer">
+  <meta property="twitter:description" content="Business Intelligence Engineer with 10+ years of experience transforming corporate assets into actionable insights. Marine Corps veteran with expertise in data analytics and automation.">
+  <meta property="twitter:image" content="https://jrhunter3.github.io/og-image.png">
+  
+  <!-- LinkedIn -->
+  <meta property="og:site_name" content="Joe Hunter - Professional Portfolio">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3EJRH%3C/text%3E%3C/svg%3E">
   
@@ -237,7 +259,14 @@
     /* Sections */
     section {
       margin-bottom: 3rem;
-      animation: fadeIn 1s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
@@ -287,11 +316,73 @@
       border-left: 4px solid var(--accent);
       transition: all 0.3s ease;
       box-shadow: 0 2px 5px var(--shadow);
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .job-card.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .job-card:hover {
       box-shadow: 0 5px 15px var(--shadow);
       transform: translateX(5px);
+    }
+
+    /* Timeline visualization */
+    .timeline-container {
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent) 0%, rgba(102, 126, 234, 0.3) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 70px;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 20px;
+      top: 8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 4px solid var(--bg-color);
+      box-shadow: 0 0 0 2px var(--accent);
+      z-index: 1;
+    }
+
+    .timeline-current .timeline-dot {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 0 2px var(--accent), 
+                    0 0 0 6px rgba(102, 126, 234, 0.4),
+                    0 0 20px rgba(102, 126, 234, 0.6);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 0 2px var(--accent), 
+                    0 0 0 12px rgba(102, 126, 234, 0.2),
+                    0 0 30px rgba(102, 126, 234, 0.4);
+        transform: scale(1.15);
+      }
     }
 
     .job-header {
@@ -463,8 +554,24 @@
 
       /* Hide interactive elements */
       nav, #scrollTopBtn, #darkModeToggle, .header-buttons, 
-      .social-links, .expand-icon {
+      .social-links, .expand-icon, .timeline-line, .timeline-dot {
         display: none !important;
+      }
+
+      /* Show all content */
+      section, .job-card {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* Simplify timeline for print */
+      .timeline-container {
+        position: static;
+      }
+
+      .timeline-item {
+        padding-left: 0;
+        margin-bottom: 0;
       }
 
       /* Simplify header for print */
@@ -738,197 +845,228 @@
     <section id="experience">
       <h2>Experience</h2>
 
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              IT Consultant
-              <i class="fas fa-chevron-down expand-icon"></i>
-            </div>
-            <div class="company">Object Systems Group, Inc., Remote</div>
-          </div>
-          <div class="job-date">2021 - Present</div>
-        </div>
-        <div class="job-description">
-          <ul>
-            <li>Designed automated processes through iterative code development utilizing knowledge of multiple programming languages, operating systems, and applications.</li>
-            <li>Frequently interacted with clients and C-suite executives to understand the needs of the business and to gauge progress in meeting objectives.</li>
-          </ul>
-        </div>
-      </div>
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
 
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Business Intelligence Engineer
-              <i class="fas fa-chevron-down expand-icon"></i>
+        <div class="timeline-item timeline-current">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  IT Consultant
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">Object Systems Group, Inc., Remote</div>
+              </div>
+              <div class="job-date">2021 - Present</div>
             </div>
-            <div class="company">Financial Industry Regulatory Authority, Inc., Remote</div>
-          </div>
-          <div class="job-date">2022 - Present</div>
-        </div>
-        <div class="job-description">
-          <ul>
-            <li>Lead efforts to research and operationalize AWS QuickSight for business-wide reporting.</li>
-            <li>Worked with multiple departments and stakeholders to lead the migration of many industry and business critical BI reports from IBM Cognos Analytics to Microsoft Power BI applications.</li>
-            <li>Worked on a team to manage many business critical PostgreSQL database tables and views through regular updates and refresh schedules.</li>
-            <li>Maintained a daily relationship with clients, team members, and managers to verify project direction and provide status updates.</li>
-            <li>Provided training and consultation services to fellow colleagues and departments within the company.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Business Intelligence Engineer
-              <i class="fas fa-chevron-down expand-icon"></i>
+            <div class="job-description">
+              <ul>
+                <li>Designed automated processes through iterative code development utilizing knowledge of multiple programming languages, operating systems, and applications.</li>
+                <li>Frequently interacted with clients and C-suite executives to understand the needs of the business and to gauge progress in meeting objectives.</li>
+              </ul>
             </div>
-            <div class="company">OSGHD, LLC, Remote</div>
           </div>
-          <div class="job-date">2021 - 2022</div>
         </div>
-        <div class="job-description">
-          <ul>
-            <li>Provided database and API extraction, transformation, and reporting services.</li>
-            <li>Designed and automated processes through iterative code development within a team environment.</li>
-            <li>Worked extensively with both AWS and Microsoft applications and systems.</li>
-            <li>Programmed and developed with Python, SQL, Ruby on Rails, javascript, and Terraform IAC.</li>
-            <li>Maintained a daily relationship with clients, customers, team members, and C-suite executives to keep projects on track.</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Business Intelligence Analyst
-              <i class="fas fa-chevron-down expand-icon"></i>
+        <div class="timeline-item timeline-current">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Business Intelligence Engineer
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">Financial Industry Regulatory Authority, Inc., Remote</div>
+              </div>
+              <div class="job-date">2022 - Present</div>
             </div>
-            <div class="company">Good Sam Enterprises, Bowling Green, KY</div>
-          </div>
-          <div class="job-date">2020 - 2021</div>
-        </div>
-        <div class="job-description">
-          <ul>
-            <li>Made improvements and automations to existing processes through Excel functions, javascript, and SQL coding in existing tools and systems.</li>
-            <li>Spearheaded the conversion from an outdated marketing tool, Engage, to a more modern tool, Unica, by providing support and training through the process of translating the Engage Query Language into SQL.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Business Data Analyst
-              <i class="fas fa-chevron-down expand-icon"></i>
+            <div class="job-description">
+              <ul>
+                <li>Lead efforts to research and operationalize AWS QuickSight for business-wide reporting.</li>
+                <li>Worked with multiple departments and stakeholders to lead the migration of many industry and business critical BI reports from IBM Cognos Analytics to Microsoft Power BI applications.</li>
+                <li>Worked on a team to manage many business critical PostgreSQL database tables and views through regular updates and refresh schedules.</li>
+                <li>Maintained a daily relationship with clients, team members, and managers to verify project direction and provide status updates.</li>
+                <li>Provided training and consultation services to fellow colleagues and departments within the company.</li>
+              </ul>
             </div>
-            <div class="company">Fruit of the Loom, Inc., Bowling Green, KY</div>
           </div>
-          <div class="job-date">2016 - 2020</div>
         </div>
-        <div class="job-description">
-          <ul>
-            <li>Automated the collection, aggregation, and analysis of both unstructured and structured data sources from the web, relational database systems, and various filetypes.</li>
-            <li>Worked extensively with R, SQL, and a suite of Microsoft advanced data products.</li>
-            <li>Presented results for both internal teams and company executives to help drive corporate strategy.</li>
-            <li>Designed, coded, and implemented several automated data pipelines which saved the company hundreds of hours of manual labor costs.</li>
-            <li>Major contributor to creating internal software packages to expedite processes and onboarding.</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Academics Tutor
-              <i class="fas fa-chevron-down expand-icon"></i>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Business Intelligence Engineer
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">OSGHD, LLC, Remote</div>
+              </div>
+              <div class="job-date">2021 - 2022</div>
             </div>
-            <div class="company">Veterans Upward Bound, Bowling Green, KY</div>
-          </div>
-          <div class="job-date">2014 - 2016</div>
-        </div>
-        <div class="job-description">
-          <ul>
-            <li>Curated one-on-one instruction for non-traditional students based on student strengths.</li>
-            <li>Primarily tutored Algebra and Geometry.</li>
-            <li>Additionally tutored Calculus, Physics, and Computer Technology.</li>
-            <li>Assisted in Physics laboratory instruction as a practical application guide.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Physics Lab Assistant
-              <i class="fas fa-chevron-down expand-icon"></i>
+            <div class="job-description">
+              <ul>
+                <li>Provided database and API extraction, transformation, and reporting services.</li>
+                <li>Designed and automated processes through iterative code development within a team environment.</li>
+                <li>Worked extensively with both AWS and Microsoft applications and systems.</li>
+                <li>Programmed and developed with Python, SQL, Ruby on Rails, javascript, and Terraform IAC.</li>
+                <li>Maintained a daily relationship with clients, customers, team members, and C-suite executives to keep projects on track.</li>
+              </ul>
             </div>
-            <div class="company">Western Kentucky University, Bowling Green, KY</div>
           </div>
-          <div class="job-date">2015 - 2016</div>
         </div>
-        <div class="job-description">
-          <ul>
-            <li>Prepared laboratory equipment for student use.</li>
-            <li>Assisted in Physics laboratory instruction as a practical application guide.</li>
-            <li>Topics covered included kinematics, fluid mechanics, and thermodynamics.</li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Marine Security Guard
-              <i class="fas fa-chevron-down expand-icon"></i>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Business Intelligence Analyst
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">Good Sam Enterprises, Bowling Green, KY</div>
+              </div>
+              <div class="job-date">2020 - 2021</div>
             </div>
-            <div class="company">US Marine Corps</div>
-          </div>
-          <div class="job-date">2009 - 2013</div>
-        </div>
-        <div class="job-description">
-          <ul>
-            <li>Responsible for the protection and security of classified material, personnel, and property at United States embassy and consular facilities.</li>
-            <li>Maintained logistics, training, and financial records for the living and working expenses of 5 – 16 Marines.</li>
-            <li>Special assignments included providing interior security for visits by the United States President and Secretary of State.</li>
-            <li>Assigned locations included Germany, Sudan, El Salvador, Czech Republic, Nicaragua, and Brazil.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
-          <div>
-            <div class="job-title">
-              Ground Electronics Maintenance Technician
-              <i class="fas fa-chevron-down expand-icon"></i>
+            <div class="job-description">
+              <ul>
+                <li>Made improvements and automations to existing processes through Excel functions, javascript, and SQL coding in existing tools and systems.</li>
+                <li>Spearheaded the conversion from an outdated marketing tool, Engage, to a more modern tool, Unica, by providing support and training through the process of translating the Engage Query Language into SQL.</li>
+              </ul>
             </div>
-            <div class="company">US Marine Corps</div>
           </div>
-          <div class="job-date">2004 - 2009</div>
         </div>
-        <div class="job-description">
-          <ul>
-            <li>Supervised the maintenance and repair of communications, data, and optical equipment during combat operations in Afghanistan.</li>
-            <li>Designed and installed the communication network for a prototype military vehicle.</li>
-            <li>Installed and repaired global-positioning systems in 15 military vehicles.</li>
-            <li>Repaired one radar system critical to detecting incoming ballistic threats, outside of training expertise.</li>
-            <li>Conducted on-the-job training for specialists in diagnostic, repair, and testing procedures.</li>
-            <li>Performed preventive maintenance and repair of 300 man-portable and vehicle-mounted HF, VHF, and SATCOM radio systems at the component level.</li>
-            <li>Managed equipment work orders and maintenance records to ensure timely and effective repair of equipment.</li>
-            <li>Ensured quality control procedures were maintained on 450 items of repaired equipment.</li>
-          </ul>
-        </div>
-      </div>
 
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Business Data Analyst
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">Fruit of the Loom, Inc., Bowling Green, KY</div>
+              </div>
+              <div class="job-date">2016 - 2020</div>
+            </div>
+            <div class="job-description">
+              <ul>
+                <li>Automated the collection, aggregation, and analysis of both unstructured and structured data sources from the web, relational database systems, and various filetypes.</li>
+                <li>Worked extensively with R, SQL, and a suite of Microsoft advanced data products.</li>
+                <li>Presented results for both internal teams and company executives to help drive corporate strategy.</li>
+                <li>Designed, coded, and implemented several automated data pipelines which saved the company hundreds of hours of manual labor costs.</li>
+                <li>Major contributor to creating internal software packages to expedite processes and onboarding.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Academics Tutor
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">Veterans Upward Bound, Bowling Green, KY</div>
+              </div>
+              <div class="job-date">2014 - 2016</div>
+            </div>
+            <div class="job-description">
+              <ul>
+                <li>Curated one-on-one instruction for non-traditional students based on student strengths.</li>
+                <li>Primarily tutored Algebra and Geometry.</li>
+                <li>Additionally tutored Calculus, Physics, and Computer Technology.</li>
+                <li>Assisted in Physics laboratory instruction as a practical application guide.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Physics Lab Assistant
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">Western Kentucky University, Bowling Green, KY</div>
+              </div>
+              <div class="job-date">2015 - 2016</div>
+            </div>
+            <div class="job-description">
+              <ul>
+                <li>Prepared laboratory equipment for student use.</li>
+                <li>Assisted in Physics laboratory instruction as a practical application guide.</li>
+                <li>Topics covered included kinematics, fluid mechanics, and thermodynamics.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Marine Security Guard
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">US Marine Corps</div>
+              </div>
+              <div class="job-date">2009 - 2013</div>
+            </div>
+            <div class="job-description">
+              <ul>
+                <li>Responsible for the protection and security of classified material, personnel, and property at United States embassy and consular facilities.</li>
+                <li>Maintained logistics, training, and financial records for the living and working expenses of 5 – 16 Marines.</li>
+                <li>Special assignments included providing interior security for visits by the United States President and Secretary of State.</li>
+                <li>Assigned locations included Germany, Sudan, El Salvador, Czech Republic, Nicaragua, and Brazil.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="job-card">
+            <div class="job-header" onclick="toggleDescription(this)">
+              <div>
+                <div class="job-title">
+                  Ground Electronics Maintenance Technician
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="company">US Marine Corps</div>
+              </div>
+              <div class="job-date">2004 - 2009</div>
+            </div>
+            <div class="job-description">
+              <ul>
+                <li>Supervised the maintenance and repair of communications, data, and optical equipment during combat operations in Afghanistan.</li>
+                <li>Designed and installed the communication network for a prototype military vehicle.</li>
+                <li>Installed and repaired global-positioning systems in 15 military vehicles.</li>
+                <li>Repaired one radar system critical to detecting incoming ballistic threats, outside of training expertise.</li>
+                <li>Conducted on-the-job training for specialists in diagnostic, repair, and testing procedures.</li>
+                <li>Performed preventive maintenance and repair of 300 man-portable and vehicle-mounted HF, VHF, and SATCOM radio systems at the component level.</li>
+                <li>Managed equipment work orders and maintenance records to ensure timely and effective repair of equipment.</li>
+                <li>Ensured quality control procedures were maintained on 450 items of repaired equipment.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <section id="education">
@@ -1041,6 +1179,32 @@
           link.style.color = 'var(--accent)';
         }
       });
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Observe job cards with staggered animation
+    const jobCards = document.querySelectorAll('.job-card');
+    jobCards.forEach((card, index) => {
+      card.style.transitionDelay = `${index * 0.1}s`;
+      observer.observe(card);
     });
   </script>
 
