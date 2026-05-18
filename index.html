@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    (function() {
-      var key = 'darkMode';
-      var stored;
-      try { stored = localStorage.getItem(key); } catch(e) {}
-      if (stored === 'enabled' || (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
   <title>Joe Hunter - Business Intelligence Engineer</title>
   
@@ -39,6 +29,18 @@
   <meta property="og:site_name" content="Joe Hunter - Professional Portfolio">
 
   <meta name="theme-color" content="#667eea">
+  <script>
+    (function() {
+      var key = 'darkMode';
+      var stored;
+      try { stored = localStorage.getItem(key); } catch(e) {}
+      if (stored === 'enabled' || (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', '#2d3748');
+      }
+    })();
+  </script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3EJRH%3C/text%3E%3C/svg%3E">
@@ -1052,7 +1054,7 @@
                 <li>Provided database and API extraction, transformation, and reporting services.</li>
                 <li>Designed and automated processes through iterative code development within a team environment.</li>
                 <li>Worked extensively with both AWS and Microsoft applications and systems.</li>
-                <li>Programmed and developed with Python, SQL, Ruby on Rails, javascript, and Terraform IAC.</li>
+                <li>Programmed and developed with Python, SQL, Ruby on Rails, JavaScript, and Terraform IAC.</li>
                 <li>Maintained a daily relationship with clients, customers, team members, and C-suite executives to keep projects on track.</li>
               </ul>
             </div>
@@ -1074,7 +1076,7 @@
             </div>
             <div class="job-description">
               <ul>
-                <li>Made improvements and automations to existing processes through Excel functions, javascript, and SQL coding in existing tools and systems.</li>
+                <li>Made improvements and automations to existing processes through Excel functions, JavaScript, and SQL coding in existing tools and systems.</li>
                 <li>Spearheaded the conversion from an outdated marketing tool, Engage, to a more modern tool, Unica, by providing support and training through the process of translating the Engage Query Language into SQL.</li>
               </ul>
             </div>
@@ -1345,8 +1347,8 @@
 
           let current = '';
           sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (scrollY >= (sectionTop - 200)) {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 200) {
               current = section.getAttribute('id');
             }
           });
