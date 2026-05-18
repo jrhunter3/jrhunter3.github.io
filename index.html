@@ -26,7 +26,9 @@
   
   <!-- LinkedIn -->
   <meta property="og:site_name" content="Joe Hunter - Professional Portfolio">
-  
+
+  <meta name="theme-color" content="#667eea">
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3EJRH%3C/text%3E%3C/svg%3E">
   
@@ -209,6 +211,7 @@
       background: var(--section-bg);
       border-radius: 15px;
       box-shadow: 0 4px 6px var(--shadow);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .contact-item {
@@ -268,6 +271,7 @@
       padding: 1.5rem;
       margin-top: 1rem;
       position: relative;
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .testimonial-inline::before {
@@ -306,26 +310,6 @@
       padding-left: 1rem;
     }
 
-    @media (max-width: 768px) {
-      .testimonials-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        display: flex;
-      }
-
-      .testimonial-card {
-        min-width: 85%;
-        scroll-snap-align: center;
-      }
-
-      .testimonials-section {
-        padding: 2rem 0;
-      }
-    }
-
     /* Sections */
     section {
       margin-bottom: 3rem;
@@ -351,6 +335,7 @@
       padding-bottom: 0.5rem;
       border-bottom: 3px solid var(--accent);
       display: inline-block;
+      transition: color 0.3s ease, border-color 0.3s ease;
     }
 
     /* Skills */
@@ -473,6 +458,7 @@
       font-size: 1.2rem;
       color: var(--accent);
       flex: 1;
+      transition: color 0.3s ease;
     }
 
     .job-date {
@@ -486,10 +472,11 @@
       opacity: 0.8;
       margin-bottom: 0.5rem;
       font-style: italic;
+      transition: color 0.3s ease;
     }
 
     .expand-icon {
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, color 0.3s ease;
       color: var(--accent);
       margin-left: 0.5rem;
     }
@@ -550,7 +537,6 @@
     }
 
     #scrollTopBtn:hover {
-      background: var(--accent);
       transform: translateY(-5px);
       box-shadow: 0 6px 20px var(--shadow);
     }
@@ -609,6 +595,27 @@
       .contact-section {
         flex-direction: column;
         align-items: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      section,
+      .job-card {
+        opacity: 1;
+        transform: none;
       }
     }
 
@@ -820,28 +827,28 @@
 <body>
 
   <header>
-    <button id="darkModeToggle" type="button" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-      <i class="fas fa-moon"></i>
+    <button id="darkModeToggle" type="button" aria-label="Toggle dark mode">
+      <i aria-hidden="true" class="fas fa-moon"></i>
     </button>
     <h1>Joe Hunter</h1>
     <p class="subtitle">Senior Data & Business Intelligence Engineer</p>
     <div class="header-buttons">
-      <button class="btn" type="button" onclick="downloadPDF()">
-        <i class="fas fa-download"></i> Download PDF
+      <button class="btn" type="button" id="downloadPdfBtn">
+        <i aria-hidden="true" class="fas fa-download"></i> Download PDF
       </button>
       <a class="btn" href="#contact">
-        <i class="fas fa-envelope"></i> Contact Me
+        <i aria-hidden="true" class="fas fa-envelope"></i> Contact Me
       </a>
     </div>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-      <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
-      <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
-      <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
-      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li><a href="#about"><i aria-hidden="true" class="fas fa-user"></i> About</a></li>
+      <li><a href="#skills"><i aria-hidden="true" class="fas fa-code"></i> Skills</a></li>
+      <li><a href="#experience"><i aria-hidden="true" class="fas fa-briefcase"></i> Experience</a></li>
+      <li><a href="#education"><i aria-hidden="true" class="fas fa-graduation-cap"></i> Education</a></li>
+      <li><a href="#contact"><i aria-hidden="true" class="fas fa-envelope"></i> Contact</a></li>
     </ul>
   </nav>
 
@@ -850,28 +857,28 @@
     <section id="contact">
       <div class="contact-section">
         <a href="mailto:employment.maker035@passinbox.com" class="contact-item">
-          <i class="fas fa-envelope"></i>
+          <i aria-hidden="true" class="fas fa-envelope"></i>
           <span>employment.maker035@passinbox.com</span>
         </a>
         <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
+          <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
           <span>Hopkinsville, KY</span>
         </div>
         <a href="https://jrhunter3.github.io" class="contact-item">
-          <i class="fas fa-globe"></i>
+          <i aria-hidden="true" class="fas fa-globe"></i>
           <span>jrhunter3.github.io</span>
         </a>
       </div>
 
       <div class="social-links">
         <a href="https://github.com/jrhunter3" class="social-link" aria-label="GitHub" target="_blank">
-          <i class="fab fa-github"></i>
+          <i aria-hidden="true" class="fab fa-github"></i>
         </a>
         <a href="https://www.linkedin.com/in/jrhunter3/" class="social-link" aria-label="LinkedIn" target="_blank">
-          <i class="fab fa-linkedin"></i>
+          <i aria-hidden="true" class="fab fa-linkedin"></i>
         </a>
         <a href="mailto:employment.maker035@passinbox.com" class="social-link" aria-label="Email">
-          <i class="fas fa-envelope"></i>
+          <i aria-hidden="true" class="fas fa-envelope"></i>
         </a>
       </div>
     </section>
@@ -886,35 +893,35 @@
       <h2>Skills</h2>
       <div class="skills-grid">
         <div class="skill-item">
-          <i class="fas fa-chart-simple"></i>
+          <i aria-hidden="true" class="fas fa-chart-simple"></i>
           <p>Power BI, QuickSight, Excel</p>
         </div>
         <div class="skill-item">
-          <i class="fas fa-code"></i>
+          <i aria-hidden="true" class="fas fa-code"></i>
           <p>Python, R, JavaScript, C++, Java, Ruby</p>
         </div>
         <div class="skill-item">
-          <i class="fas fa-database"></i>
+          <i aria-hidden="true" class="fas fa-database"></i>
           <p>PostgreSQL, MySQL, Aurora, RDS, S3</p>
         </div>
         <div class="skill-item">
-          <i class="fas fa-server"></i>
+          <i aria-hidden="true" class="fas fa-server"></i>
           <p>Lambda, Glue, Spark, Trino</p>
         </div>
         <div class="skill-item">
-          <i class="fab fa-git-alt"></i>
+          <i aria-hidden="true" class="fab fa-git-alt"></i>
           <p>Git, Bitbucket</p>
         </div>
         <div class="skill-item">
-          <i class="fab fa-gitlab"></i>
+          <i aria-hidden="true" class="fab fa-gitlab"></i>
           <p>Jenkins, GitLab, CircleCI, Docker</p>
         </div>
         <div class="skill-item">
-          <i class="fas fa-robot"></i>
+          <i aria-hidden="true" class="fas fa-robot"></i>
           <p>GenAI, Agentic AI, Claude, LLM</p>
         </div>
         <div class="skill-item">
-          <i class="fas fa-exchange-alt"></i>
+          <i aria-hidden="true" class="fas fa-exchange-alt"></i>
           <p>FastAPI, REST API, JSON, XML</p>
         </div>
       </div>
@@ -929,11 +936,11 @@
         <div class="timeline-item timeline-current">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   IT Consultant
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">Object Systems Group, Inc., Remote</div>
               </div>
@@ -952,11 +959,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Senior Data & BI Engineer
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">Financial Industry Regulatory Authority, Inc., Remote</div>
               </div>
@@ -980,11 +987,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Business Intelligence Engineer
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">Onsite Health Diagnostics, LLC, Remote</div>
               </div>
@@ -1005,11 +1012,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Business Intelligence Analyst
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">Good Sam Enterprises, Bowling Green, KY</div>
               </div>
@@ -1027,11 +1034,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Business Data Analyst
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">Fruit of the Loom, Inc., Bowling Green, KY</div>
               </div>
@@ -1059,11 +1066,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Academics Tutor
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">Veterans Upward Bound, Bowling Green, KY</div>
               </div>
@@ -1083,11 +1090,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Physics Lab Assistant
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">Western Kentucky University, Bowling Green, KY</div>
               </div>
@@ -1106,11 +1113,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Marine Security Guard
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">US Marine Corps</div>
               </div>
@@ -1137,11 +1144,11 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" onclick="toggleDescription(this)">
+            <div class="job-header" >
               <div>
                 <div class="job-title">
                   Ground Electronics Maintenance Technician
-                  <i class="fas fa-chevron-down expand-icon"></i>
+                  <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
                 </div>
                 <div class="company">US Marine Corps</div>
               </div>
@@ -1175,11 +1182,11 @@
     <section id="education">
       <h2>Education</h2>
       <div class="job-card">
-        <div class="job-header" onclick="toggleDescription(this)">
+        <div class="job-header" >
           <div>
             <div class="job-title">
               B.Sc. in Electrical Engineering
-              <i class="fas fa-chevron-down expand-icon"></i>
+              <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
             </div>
             <div class="company">Western Kentucky University</div>
           </div>
@@ -1195,47 +1202,67 @@
 
   </main>
 
-  <button id="scrollTopBtn" type="button" onclick="scrollToTop()" aria-label="Scroll to top">
-    <i class="fas fa-arrow-up"></i>
+  <button id="scrollTopBtn" type="button" aria-label="Scroll to top">
+    <i aria-hidden="true" class="fas fa-arrow-up"></i>
   </button>
 
   <script>
     const DARK_MODE_KEY = 'darkMode';
+    const ICON_SUN = 'fas fa-sun';
+    const ICON_MOON = 'fas fa-moon';
     function getStorage(key) { try { return localStorage.getItem(key); } catch { return null; } }
     function setStorage(key, val) { try { localStorage.setItem(key, val); } catch { /* noop */ } }
 
-    // Toggle job descriptions
-    function toggleDescription(element) {
-      const card = element.closest('.job-card');
+    function toggleDescription(header) {
+      const card = header.closest('.job-card');
       const desc = card.querySelector('.job-description');
       const icon = card.querySelector('.expand-icon');
-      
+      const expanded = desc.classList.toggle('open');
       icon.classList.toggle('active');
-      desc.classList.toggle('open');
+      header.setAttribute('aria-expanded', expanded);
     }
+
+    document.querySelectorAll('.job-header').forEach(header => {
+      header.setAttribute('role', 'button');
+      header.setAttribute('tabindex', '0');
+      header.setAttribute('aria-expanded', 'false');
+      header.addEventListener('click', () => toggleDescription(header));
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleDescription(header);
+        }
+      });
+    });
 
     // Dark mode toggle
     function toggleDarkMode() {
-      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.toggle('dark');
       const icon = document.querySelector('#darkModeToggle i');
-      
-      if (document.body.classList.contains('dark')) {
-        icon.className = 'fas fa-sun';
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+      if (isDark) {
+        icon.className = ICON_SUN;
         setStorage(DARK_MODE_KEY, 'enabled');
+        if (themeMeta) themeMeta.setAttribute('content', '#2d3748');
       } else {
-        icon.className = 'fas fa-moon';
+        icon.className = ICON_MOON;
         setStorage(DARK_MODE_KEY, 'disabled');
+        if (themeMeta) themeMeta.setAttribute('content', '#667eea');
       }
     }
 
     // Load dark mode preference
     const stored = getStorage(DARK_MODE_KEY);
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (stored === 'enabled') {
       document.body.classList.add('dark');
-      document.querySelector('#darkModeToggle i').className = 'fas fa-sun';
+      document.querySelector('#darkModeToggle i').className = ICON_SUN;
+      if (themeMeta) themeMeta.setAttribute('content', '#2d3748');
     } else if (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('dark');
-      document.querySelector('#darkModeToggle i').className = 'fas fa-sun';
+      document.querySelector('#darkModeToggle i').className = ICON_SUN;
+      if (themeMeta) themeMeta.setAttribute('content', '#2d3748');
     }
 
     const scrollTopBtn = document.getElementById("scrollTopBtn");
@@ -1254,10 +1281,8 @@
 
       window.print();
 
-      setTimeout(() => {
-        jobDescriptions.forEach(desc => desc.classList.remove('open'));
-        expandIcons.forEach(icon => icon.classList.remove('active'));
-      }, 1000);
+      jobDescriptions.forEach(desc => desc.classList.remove('open'));
+      expandIcons.forEach(icon => icon.classList.remove('active'));
     }
 
     // Highlight active nav section on scroll
@@ -1312,6 +1337,10 @@
       card.style.transitionDelay = `${index * 0.1}s`;
       observer.observe(card);
     });
+
+    document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+    document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
+    document.getElementById('scrollTopBtn').addEventListener('click', scrollToTop);
   </script>
 
 </body>
