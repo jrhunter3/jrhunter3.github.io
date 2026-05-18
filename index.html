@@ -56,14 +56,16 @@
       --shadow: rgba(0, 0, 0, 0.3);
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: background 0.3s ease, color 0.3s ease;
@@ -368,23 +370,26 @@
     }
 
     /* Experience */
+    .education-card,
     .job-card {
       background: var(--section-bg);
       padding: 1.5rem;
       border-radius: 10px;
       margin-bottom: 1.5rem;
       border-left: 4px solid var(--accent);
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-left-color 0.3s ease;
       box-shadow: 0 2px 5px var(--shadow);
       opacity: 0;
       transform: translateX(-20px);
     }
 
+    .education-card.visible,
     .job-card.visible {
       opacity: 1;
       transform: translateX(0);
     }
 
+    .education-card:hover,
     .job-card:hover {
       box-shadow: 0 5px 15px var(--shadow);
     }
@@ -444,6 +449,7 @@
       }
     }
 
+    .education-header,
     .job-header {
       cursor: pointer;
       display: flex;
@@ -453,6 +459,7 @@
       margin-bottom: 0.5rem;
     }
 
+    .education-title,
     .job-title {
       font-weight: bold;
       font-size: 1.2rem;
@@ -475,16 +482,19 @@
       transition: color 0.3s ease;
     }
 
+    .education-expand-icon,
     .expand-icon {
       transition: transform 0.3s ease, color 0.3s ease;
       color: var(--accent);
       margin-left: 0.5rem;
     }
 
+    .education-expand-icon.active,
     .expand-icon.active {
       transform: rotate(180deg);
     }
 
+    .education-description,
     .job-description {
       max-height: 0;
       overflow: hidden;
@@ -492,23 +502,27 @@
       transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.3s ease;
     }
 
+    .education-description.open,
     .job-description.open {
       max-height: 2000px;
       opacity: 1;
       margin-top: 1rem;
     }
 
+    .education-description ul,
     .job-description ul {
       list-style: none;
       padding-left: 0;
     }
 
+    .education-description li,
     .job-description li {
       padding-left: 1.5rem;
       margin-bottom: 0.5rem;
       position: relative;
     }
 
+    .education-description li::before,
     .job-description li::before {
       content: "▹";
       position: absolute;
@@ -539,6 +553,11 @@
     #scrollTopBtn:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 20px var(--shadow);
+    }
+
+    #scrollTopBtn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--bg-color), 0 0 0 5px var(--accent);
     }
 
     /* Animations */
@@ -584,6 +603,7 @@
         font-size: 0.9rem;
       }
 
+      .education-header,
       .job-header {
         flex-direction: column;
       }
@@ -613,13 +633,13 @@
       }
 
       section,
+      .education-card,
       .job-card {
         opacity: 1;
         transform: none;
       }
     }
 
-    /* Enhanced Print Styles for PDF */
     @media print {
       @page {
         margin: 0.75in;
@@ -635,13 +655,13 @@
 
       /* Hide interactive elements */
       nav, #scrollTopBtn, #darkModeToggle, .header-buttons, 
-      .social-links, .expand-icon, .timeline-line, .timeline-dot,
+      .social-links, .education-expand-icon, .expand-icon, .timeline-line, .timeline-dot,
       .testimonial-inline {
         display: none !important;
       }
 
       /* Show all content */
-      section, .job-card {
+      section, .education-card, .job-card {
         opacity: 1 !important;
         transform: none !important;
       }
@@ -698,6 +718,7 @@
 
       .contact-item {
         font-size: 10pt;
+        color: black !important;
       }
 
       /* Section styling */
@@ -718,6 +739,7 @@
       }
 
       /* Expand all job descriptions */
+      .education-description,
       .job-description {
         max-height: none !important;
         opacity: 1 !important;
@@ -726,6 +748,7 @@
       }
 
       /* Job cards for print */
+      .education-card,
       .job-card {
         background: white !important;
         border: 1px solid #ddd !important;
@@ -739,10 +762,12 @@
         transform: none !important;
       }
 
+      .education-header,
       .job-header {
         margin-bottom: 5px;
       }
 
+      .education-title,
       .job-title {
         font-size: 12pt;
         color: #667eea !important;
@@ -761,16 +786,19 @@
         color: #777 !important;
       }
 
+      .education-description ul,
       .job-description ul {
         margin-top: 5px;
       }
 
+      .education-description li,
       .job-description li {
         font-size: 10pt;
         margin-bottom: 4px;
         line-height: 1.3;
       }
 
+      .education-description li::before,
       .job-description li::before {
         color: #667eea !important;
         -webkit-print-color-adjust: exact;
@@ -808,7 +836,7 @@
       }
 
       /* Prevent awkward breaks */
-      h1, h2, h3, .job-title {
+      h1, h2, h3, .education-title, .job-title {
         page-break-after: avoid;
       }
 
@@ -855,6 +883,7 @@
   <main class="container">
     
     <section id="contact">
+      <h2>Contact</h2>
       <div class="contact-section">
         <a href="mailto:employment.maker035@passinbox.com" class="contact-item">
           <i aria-hidden="true" class="fas fa-envelope"></i>
@@ -871,10 +900,10 @@
       </div>
 
       <div class="social-links">
-        <a href="https://github.com/jrhunter3" class="social-link" aria-label="GitHub" target="_blank">
+        <a href="https://github.com/jrhunter3" class="social-link" aria-label="GitHub" target="_blank" rel="noopener">
           <i aria-hidden="true" class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/jrhunter3/" class="social-link" aria-label="LinkedIn" target="_blank">
+        <a href="https://www.linkedin.com/in/jrhunter3/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
           <i aria-hidden="true" class="fab fa-linkedin"></i>
         </a>
         <a href="mailto:employment.maker035@passinbox.com" class="social-link" aria-label="Email">
@@ -1181,18 +1210,18 @@
 
     <section id="education">
       <h2>Education</h2>
-      <div class="job-card">
-        <div class="job-header" >
+      <div class="education-card">
+        <div class="education-header" >
           <div>
-            <div class="job-title">
+            <div class="education-title">
               B.Sc. in Electrical Engineering
-              <i aria-hidden="true" class="fas fa-chevron-down expand-icon"></i>
+              <i aria-hidden="true" class="fas fa-chevron-down education-expand-icon"></i>
             </div>
             <div class="company">Western Kentucky University</div>
           </div>
           <div class="job-date">2013 - 2017</div>
         </div>
-        <div class="job-description">
+        <div class="education-description">
           <p><strong>Minor:</strong> Mathematics</p>
           <p><strong>Honors:</strong> Magna Cum Laude</p>
           <p><strong>Societies:</strong> Tau Beta Pi</p>
@@ -1214,15 +1243,15 @@
     function setStorage(key, val) { try { localStorage.setItem(key, val); } catch { /* noop */ } }
 
     function toggleDescription(header) {
-      const card = header.closest('.job-card');
-      const desc = card.querySelector('.job-description');
-      const icon = card.querySelector('.expand-icon');
+      const card = header.closest('.job-card, .education-card');
+      const desc = card.querySelector('.job-description, .education-description');
+      const icon = card.querySelector('.expand-icon, .education-expand-icon');
       const expanded = desc.classList.toggle('open');
       icon.classList.toggle('active');
       header.setAttribute('aria-expanded', expanded);
     }
 
-    document.querySelectorAll('.job-header').forEach(header => {
+    document.querySelectorAll('.job-header, .education-header').forEach(header => {
       header.setAttribute('role', 'button');
       header.setAttribute('tabindex', '0');
       header.setAttribute('aria-expanded', 'false');
@@ -1273,8 +1302,8 @@
     }
     
     function downloadPDF() {
-      const jobDescriptions = document.querySelectorAll('.job-description');
-      const expandIcons = document.querySelectorAll('.expand-icon');
+      const jobDescriptions = document.querySelectorAll('.job-description, .education-description');
+      const expandIcons = document.querySelectorAll('.expand-icon, .education-expand-icon');
 
       jobDescriptions.forEach(desc => desc.classList.add('open'));
       expandIcons.forEach(icon => icon.classList.add('active'));
@@ -1322,17 +1351,18 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Observe all sections
+    // Observe all sections (except #contact which is always visible)
     sections.forEach(section => {
-      observer.observe(section);
+      if (section.id !== 'contact') observer.observe(section);
     });
 
     // Observe job cards with staggered animation
-    const jobCards = document.querySelectorAll('.job-card');
+    const jobCards = document.querySelectorAll('.job-card, .education-card');
     jobCards.forEach((card, index) => {
       card.style.transitionDelay = `${index * 0.1}s`;
       observer.observe(card);
