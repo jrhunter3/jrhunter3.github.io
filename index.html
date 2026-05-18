@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function() {
+      var key = 'darkMode';
+      var stored;
+      try { stored = localStorage.getItem(key); } catch(e) {}
+      if (stored === 'enabled' || (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="color-scheme" content="light dark">
   <title>Joe Hunter - Business Intelligence Engineer</title>
   
   <!-- Meta Tags for Social Sharing -->
@@ -32,7 +43,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3EJRH%3C/text%3E%3C/svg%3E">
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
   <style>
     :root {
       --bg-color: #ffffff;
@@ -45,7 +56,7 @@
       --shadow: rgba(0, 0, 0, 0.1);
     }
 
-    body.dark {
+    html.dark {
       --bg-color: #1a1a1a;
       --text-color: #e4e4e4;
       --header-bg: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
@@ -846,7 +857,7 @@
       }
 
       /* Prevent awkward breaks */
-      h1, h2, h3, .education-title, .job-title {
+      h1, h2, .education-title, .job-title {
         page-break-after: avoid;
       }
 
@@ -882,11 +893,11 @@
 
   <nav>
     <ul>
+      <li><a href="#contact"><i aria-hidden="true" class="fas fa-envelope"></i> Contact</a></li>
       <li><a href="#about"><i aria-hidden="true" class="fas fa-user"></i> About</a></li>
       <li><a href="#skills"><i aria-hidden="true" class="fas fa-code"></i> Skills</a></li>
       <li><a href="#experience"><i aria-hidden="true" class="fas fa-briefcase"></i> Experience</a></li>
       <li><a href="#education"><i aria-hidden="true" class="fas fa-graduation-cap"></i> Education</a></li>
-      <li><a href="#contact"><i aria-hidden="true" class="fas fa-envelope"></i> Contact</a></li>
     </ul>
   </nav>
 
@@ -975,7 +986,7 @@
         <div class="timeline-item timeline-current">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   IT Consultant
@@ -998,7 +1009,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Senior Data & BI Engineer
@@ -1026,7 +1037,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Business Intelligence Engineer
@@ -1051,7 +1062,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Business Intelligence Analyst
@@ -1073,7 +1084,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Business Data Analyst
@@ -1105,7 +1116,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Academics Tutor
@@ -1129,7 +1140,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Physics Lab Assistant
@@ -1152,7 +1163,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Marine Security Guard
@@ -1183,7 +1194,7 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="job-card">
-            <div class="job-header" >
+            <div class="job-header">
               <div>
                 <div class="job-title">
                   Ground Electronics Maintenance Technician
@@ -1221,7 +1232,7 @@
     <section id="education">
       <h2>Education</h2>
       <div class="education-card">
-        <div class="education-header" >
+        <div class="education-header">
           <div>
             <div class="education-title">
               B.Sc. in Electrical Engineering
@@ -1276,7 +1287,7 @@
 
     // Dark mode toggle
     function toggleDarkMode() {
-      const isDark = document.body.classList.toggle('dark');
+      const isDark = document.documentElement.classList.toggle('dark');
       const icon = document.querySelector('#darkModeToggle i');
       const themeMeta = document.querySelector('meta[name="theme-color"]');
 
@@ -1291,24 +1302,23 @@
       }
     }
 
-    // Load dark mode preference
-    const stored = getStorage(DARK_MODE_KEY);
+    // Sync UI with dark mode state (class already set by inline script in <head>)
+    const isDark = document.documentElement.classList.contains('dark');
     const themeMeta = document.querySelector('meta[name="theme-color"]');
-    if (stored === 'enabled') {
-      document.body.classList.add('dark');
-      document.querySelector('#darkModeToggle i').className = ICON_SUN;
+    const toggleIcon = document.querySelector('#darkModeToggle i');
+    if (isDark) {
+      toggleIcon.className = ICON_SUN;
       if (themeMeta) themeMeta.setAttribute('content', '#2d3748');
-    } else if (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-      document.querySelector('#darkModeToggle i').className = ICON_SUN;
-      if (themeMeta) themeMeta.setAttribute('content', '#2d3748');
+    } else {
+      toggleIcon.className = ICON_MOON;
+      if (themeMeta) themeMeta.setAttribute('content', '#667eea');
     }
 
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     let ticking = false;
 
     function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0 });
     }
     
     function downloadPDF() {
